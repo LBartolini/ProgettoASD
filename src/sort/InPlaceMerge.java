@@ -1,19 +1,21 @@
+package sort;
 
+import list.Nodo;
 public class InPlaceMerge {
 
-	static void merge(int arr[], int start, int mid, int end)
+	static <T> void merge(Nodo <T> arr[], int start, int mid, int end)
 	{
 		int start2 = mid + 1;
-		if (arr[mid] <= arr[start2]) {
+		if (arr[mid].getChiave() <= arr[start2].getChiave()) {
 			return;
 		}
 
 		while (start <= mid && start2 <= end) {
-			if (arr[start] <= arr[start2]) {
+			if (arr[start].getChiave() <= arr[start2].getChiave()) {
 				start++;
 			}
 			else {
-				int value = arr[start2];
+				Nodo<T> value = arr[start2];
 				int i = start2;
 
 				while (i != start) {
@@ -21,7 +23,6 @@ public class InPlaceMerge {
 					i--;
 				}
 				arr[start] = value;
-
 				start++;
 				mid++;
 				start2++;
@@ -29,23 +30,13 @@ public class InPlaceMerge {
 		}
 	}
 
-	static void mergeSort(int arr[], int l, int r)
+	public static <T> void MergeSort(Nodo <T> arr[], int l, int r)
 	{
 		if (l < r) {
-
 			int m = l + (r - l) / 2;
-			mergeSort(arr, l, m);
-			mergeSort(arr, m + 1, r);
-
+			MergeSort(arr, l, m);
+			MergeSort(arr, m + 1, r);
 			merge(arr, l, m, r);
 		}
-	}
-
-	public static void main(String[] args)
-	{
-		int arr[] = { 2, 4, 9, 5, 6, 7 };
-
-		mergeSort(arr, 0, arr.length - 1);
-
 	}
 }

@@ -1,4 +1,3 @@
-// Java program in-place Merge Sort
 
 public class InPlaceMerge {
 

@@ -1,9 +1,9 @@
 package sort;
 
 import list.Nodo;
-public class InPlaceMerge {
+public class MergeSort {
 
-	static <T> void merge(Nodo <T> arr[], int start, int mid, int end)
+	private static <T> void merge(Nodo <T> arr[], int start, int mid, int end)
 	{
 		int start2 = mid + 1;
 		if (arr[mid].getChiave() <= arr[start2].getChiave()) {
@@ -30,13 +30,17 @@ public class InPlaceMerge {
 		}
 	}
 
-	public static <T> void MergeSort(Nodo <T> arr[], int l, int r)
+	private static <T> void mergeSort(Nodo <T> arr[], int l, int r)
 	{
 		if (l < r) {
 			int m = l + (r - l) / 2;
-			MergeSort(arr, l, m);
-			MergeSort(arr, m + 1, r);
+			mergeSort(arr, l, m);
+			mergeSort(arr, m + 1, r);
 			merge(arr, l, m, r);
 		}
+	}
+	
+	public static <T> void sort(Nodo <T> arr[]) {
+		mergeSort(arr, 0, arr.length-1);
 	}
 }

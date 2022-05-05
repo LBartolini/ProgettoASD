@@ -6,9 +6,9 @@ public class Main {
 		ListaCircolare<String> lc = new ListaCircolare<>();
 		lc.insert("plapla", 0);
 		lc.insert("pluto", 1);
-		lc.insert("pluggg", 1);
 		lc.insert("plusac", 5);
 		lc.insert("plaaau", 3);
+		lc.insert("pluggg", 1);
 		lc.insert("plubbn", 7);
 		lc.insert("pluxcx", 8);
 		lc.insert("plufgf", 9);

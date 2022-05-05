@@ -3,7 +3,6 @@ package list;
 import java.util.LinkedList;
 import java.util.ArrayList;
 
-import sort.InPlaceMerge;
 import sort.MergeSort;
 
 public class ListaCircolare<T> {
@@ -198,7 +197,7 @@ public class ListaCircolare<T> {
 			return "Empty";
 		
 		Nodo<T>[] array = getArray();
-		InPlaceMerge.MergeSort(array, 0, array.length-1);
+		MergeSort.sort(array);
 		
 		String ret = array[0].toString();
 		for(int i = 1; i < array.length; i++) {

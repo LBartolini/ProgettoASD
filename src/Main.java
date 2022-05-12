@@ -1,3 +1,7 @@
+// Bartolini Lorenzo
+// De Santis Stefano
+// Pasquini Lorenzo
+
 import list.ListaCircolare;
 
 public class Main {

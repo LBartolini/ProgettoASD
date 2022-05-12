@@ -1,3 +1,7 @@
+// Bartolini Lorenzo
+// De Santis Stefano
+// Pasquini Lorenzo
+
 package list;
 
 import java.util.LinkedList;
@@ -178,7 +182,6 @@ public class ListaCircolare<T> {
 	}
 	
 	private Nodo<T>[] getArray(){
-		// NON FUNZIONA UN CAZZO
 		Nodo<T>[] ret =  new Nodo[size];
 		int i=0;
 		ret[i++] = head;

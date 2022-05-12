@@ -1,3 +1,7 @@
+// Bartolini Lorenzo
+// De Santis Stefano
+// Pasquini Lorenzo
+
 package list;
 
 public class Nodo<T>{

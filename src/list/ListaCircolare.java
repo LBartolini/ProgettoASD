@@ -71,7 +71,10 @@ public class ListaCircolare<T> {
 		}
 	}
 	
-	private LinkedList<Nodo<T>> searchPrivate(T info, int chiave) {
+	private LinkedList<Nodo<T>> searchPrivate(T info, int chiave) { 
+		// restituisce una lista contenente i nodi che hanno sia chiave che info uguale a qualli cercati
+		// con la condizione che siano alla stessa distanza da head
+		
 		LinkedList<Nodo<T>> ret = new LinkedList<>();
 		
 		if(head == null)
@@ -104,6 +107,9 @@ public class ListaCircolare<T> {
 	}
 	
 	private LinkedList<Nodo<T>> searchPrivate(int chiave) {
+		// restituisce una lista contenente i nodi che hanno la chiave uguale a qualla cercata
+		// con la condizione che siano alla stessa distanza da head
+		
 		LinkedList<Nodo<T>> ret = new LinkedList<>();
 		
 		if(head == null)
@@ -117,7 +123,7 @@ public class ListaCircolare<T> {
 		Nodo<T> el_fw = head.getNext();
 		Nodo<T> el_bw = head.getPrev();
 		boolean trovato = false;
-		while(el_fw.getPrev() != el_bw && !trovato) {
+		while(el_fw.getPrev() != el_bw && !trovato && el_fw != head) {
 			if(el_fw.getChiave() == chiave) {
 				ret.add(el_fw);
 				trovato = true;	
@@ -150,18 +156,25 @@ public class ListaCircolare<T> {
 		return ret;
 	}
 	
-	public Nodo<T> get(int indice){
-		if(indice >= size || indice < 0)
+	public Nodo<T> get(int indice){ // 1 <= indice <= size
+		if(indice <= 0)
 			return null;
+		
+		// effettuo l'operazione di modulo (sommo 1 a size perchè l'indice parte da 1) perchè la struttura dati è circolare 
+		// perciò ricercando un elemento maggiore del numero di elementi presenti attualmente
+		// restituirà l'elemento in posizione modulo size
+		indice = indice%(size+1); 
 		
 		Nodo<T> temp = head;
 		
-		if(indice < size/2) {
-			for(int i = 0; i<indice; i++) {
+		// controllo affinchè possa procedere nella direzione giusta 
+		// per dimezzare il numero di elementi da scorrere prima di arrivare a quello cercato
+		if(indice <= size/2) { 
+			for(int i = 1; i<indice; i++) { // i comincia da 1 perchè l'indice in input può essere minimo 1
 				temp = temp.getNext();
 			}
 		}else {
-			for(int i = 0; i<indice; i++) {
+			for(int i = 0; i<size-indice+1; i++) {
 				temp = temp.getPrev();
 			}
 		}

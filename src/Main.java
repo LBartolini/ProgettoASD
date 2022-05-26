@@ -8,24 +8,29 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		ListaCircolare<String> lc = new ListaCircolare<>();
-		lc.insert("plapla", 0);
-		lc.insert("pluto", 1);
-		lc.insert("pluggg", 1);
-		lc.insert("plusac", 5);
-		lc.insert("plaaau", 3);
-		lc.insert("plubbn", 7);
-		lc.insert("pluxcx", 8);
-		lc.insert("plufgf", 9);
-		lc.insert("pluuu", 10);
-		lc.insert("pluvf", 12);
-		lc.insert("platone", 1);
+		lc.insert("Lorenzo", 0);
+		lc.insert("Claudio", 5);
+		lc.insert("Alessio", 2);
+		lc.insert("Marco", 5);
+		lc.insert("Stefano", 3);
+		lc.insert("Andrea", 7);
+		lc.insert("Sofia", 8);
+		lc.insert("Irene", 9);
+		lc.insert("Serena", 10);
+		lc.insert("Lorenzo", 12);
+		lc.insert("Marco", 1);
+		lc.insert("Giovanni", 5);
+		
+		System.out.println(lc.size());
+		System.out.println(lc.get(6));
 		
 		System.out.println(lc.getStringSPrime());
-		System.out.println(lc.getStringS());
-		System.out.println(lc.search(1));
-	
-		lc.remove(1);
-		System.out.println(lc.getStringS());
+		System.out.println(lc);
+		
+		System.out.println(lc.search(5));
+		lc.remove(0);
+		
+		System.out.println(lc);
 	}
 
 }

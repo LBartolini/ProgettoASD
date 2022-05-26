@@ -10,6 +10,8 @@ import list.Nodo;
 
 public class MergeSort {
 	
+	private static final int SIZE_INSERTION_SORT = 4;
+	
 	public static <T> void sort(Nodo<T>[] array) {
 		mergeSortRicorsivo(array, 0, array.length-1);
 	}
@@ -18,8 +20,15 @@ public class MergeSort {
 		if(left >= right) return;
 		
 		int m = (left+right)/2;
-		mergeSortRicorsivo(A, left, m);
-		mergeSortRicorsivo(A, m+1, right);
+		
+		if(m-left > SIZE_INSERTION_SORT) {
+			mergeSortRicorsivo(A, left, m);
+			mergeSortRicorsivo(A, m+1, right);
+		}else {
+			InsertionSort.sort(A, left, m);
+			InsertionSort.sort(A, m+1, right);
+		}
+		
 		merge(A, left, m, right);
 	}
 	

@@ -5,8 +5,6 @@
 package list;
 
 import java.util.LinkedList;
-import java.util.ArrayList;
-
 import sort.MergeSort;
 
 public class ListaCircolare<T> {
@@ -195,7 +193,7 @@ public class ListaCircolare<T> {
 	}
 	
 	private Nodo<T>[] getArray(){
-		Nodo<T>[] ret =  new Nodo[size];
+		Nodo<T>[] ret = new Nodo[size];
 		int i=0;
 		ret[i++] = head;
 		Nodo<T> x = head.getNext();

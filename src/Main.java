@@ -15,6 +15,13 @@ public class Main {
 		lc.insert("Stefano", 3);
 		lc.insert("Andrea", 7);
 		lc.insert("Sofia", 8);
+		lc.insert("Claudio", 3);
+		lc.insert("Alessio", 1);
+		lc.insert("Marco", 7);
+		lc.insert("Stefano", 8);
+		lc.insert("Andrea", 9);
+		lc.insert("Sofia", 11);
+		lc.insert("Irene", 2);
 		lc.insert("Irene", 9);
 		lc.insert("Serena", 10);
 		lc.insert("Lorenzo", 12);

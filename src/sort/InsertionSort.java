@@ -1,3 +1,7 @@
+// Bartolini Lorenzo
+// De Santis Stefano
+// Pasquini Lorenzo
+
 package sort;
 
 import list.Nodo;

@@ -4,7 +4,9 @@
 
 package list;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
+
 import sort.MergeSort;
 
 public class ListaCircolare<T> {
@@ -57,23 +59,31 @@ public class ListaCircolare<T> {
 		size--;
 	}
 	
-	public void remove(int chiave) {
+	public List<Nodo<T>> remove(int chiave) {
+		List<Nodo<T>> out = new ArrayList<>();
+		
 		if(head.getChiave() == chiave) { 
+			out.add(head);
+			
 			remove(head);
 			head = head.getNext();
-			return;
+			
+			return out;
 		}
 		
 		for(Nodo<T> nodo: searchPrivate(chiave)) {
+			out.add(nodo);
 			remove(nodo);
 		}
+		
+		return out;
 	}
 	
-	private LinkedList<Nodo<T>> searchPrivate(T info, int chiave) { 
+	private List<Nodo<T>> searchPrivate(T info, int chiave) { 
 		// restituisce una lista contenente i nodi che hanno sia chiave che info uguale a qualli cercati
 		// con la condizione che siano alla stessa distanza da head
 		
-		LinkedList<Nodo<T>> ret = new LinkedList<>();
+		List<Nodo<T>> ret = new ArrayList<>();
 		
 		if(head == null)
 			return ret;
@@ -104,11 +114,11 @@ public class ListaCircolare<T> {
 		return ret;
 	}
 	
-	private LinkedList<Nodo<T>> searchPrivate(int chiave) {
+	private List<Nodo<T>> searchPrivate(int chiave) {
 		// restituisce una lista contenente i nodi che hanno la chiave uguale a qualla cercata
 		// con la condizione che siano alla stessa distanza da head
 		
-		LinkedList<Nodo<T>> ret = new LinkedList<>();
+		List<Nodo<T>> ret = new ArrayList<>();
 		
 		if(head == null)
 			return ret;
@@ -140,7 +150,7 @@ public class ListaCircolare<T> {
 	}
 	
 	public String search(int chiave) {
-		LinkedList<Nodo<T>> nodi = searchPrivate(chiave);
+		List<Nodo<T>> nodi = searchPrivate(chiave);
 		
 		if(nodi.size()==0)
 			return "Nessun nodo con la chiave ["+chiave+"]";

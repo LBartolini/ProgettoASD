@@ -1,6 +1,6 @@
-// Bartolini Lorenzo
-// De Santis Stefano
-// Pasquini Lorenzo
+// Bartolini Lorenzo 7073016
+// De Santis Stefano 7074785
+// Pasquini Lorenzo 7074017
 
 package list;
 

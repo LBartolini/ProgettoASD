@@ -1,6 +1,6 @@
-// Bartolini Lorenzo
-// De Santis Stefano
-// Pasquini Lorenzo
+// Bartolini Lorenzo 7073016
+// De Santis Stefano 7074785
+// Pasquini Lorenzo 7074017
 
 package sort;
 
@@ -10,9 +10,11 @@ import list.Nodo;
 
 public class MergeSort {
 	
-	private static final int SIZE_INSERTION_SORT = 4;
+	// Costante che definisce la dimensione tale per usare InsertionSort al posto di MergeSort
+	private static final int SIZE_INSERTION_SORT = 5; 
 	
 	public static <T> void sort(Nodo<T>[] array) {
+		// Effettua la prima chiamata ricorsiva del MergeSort
 		mergeSortRicorsivo(array, 0, array.length-1);
 	}
 	
@@ -32,6 +34,7 @@ public class MergeSort {
 		merge(A, left, m, right);
 	}
 	
+	// Procedura di merge dei due sottovettori all'interno di A
 	private static <T> void merge(Nodo<T>[] A, int left1, int mid, int right) {
 		Nodo<T>[] temp = new Nodo[right-left1+1];
 		int i = 0; // indice per l'inserimento in temp

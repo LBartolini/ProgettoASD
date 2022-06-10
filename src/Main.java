@@ -1,6 +1,6 @@
-// Bartolini Lorenzo
-// De Santis Stefano
-// Pasquini Lorenzo
+// Bartolini Lorenzo 7073016
+// De Santis Stefano 7074785
+// Pasquini Lorenzo 7074017
 
 import list.ListaCircolare;
 
@@ -8,7 +8,6 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		ListaCircolare<String> lc = new ListaCircolare<>();
-		lc.insert("Lorenzo", 0);
 		lc.insert("Claudio", 5);
 		lc.insert("Alessio", 2);
 		lc.insert("Marco", 5);

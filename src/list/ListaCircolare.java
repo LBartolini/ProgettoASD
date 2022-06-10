@@ -1,6 +1,6 @@
-// Bartolini Lorenzo
-// De Santis Stefano
-// Pasquini Lorenzo
+// Bartolini Lorenzo 7073016
+// De Santis Stefano 7074785
+// Pasquini Lorenzo 7074017
 
 package list;
 
@@ -12,13 +12,15 @@ import sort.MergeSort;
 public class ListaCircolare<T> {
 	
 	private Nodo<T> head;
-	private int size;
+	private int size; // numero di elementi nella lista
 	
 	public ListaCircolare() {
+		// Costruttore semplice
 		size = 0;
 	}
 	
 	public ListaCircolare(T info, int chiave) {
+		// Costruttore in cui si definisce le informazioni contenute in Head
 		initHead(info, chiave);
 	}
 	
@@ -34,10 +36,12 @@ public class ListaCircolare<T> {
 	
 	public void insert(T info, int chiave) {
 		if(head == null) {
+			// Se non c'è la testa allora la inizializzo
 			initHead(info, chiave);
 			return;
 		}
 			
+		// Se esiste già un nodo con la stessa chiave e informazione allora non lo aggiungo
 		if(searchPrivate(info, chiave).size() > 0) 
 			return;
 		
@@ -54,24 +58,34 @@ public class ListaCircolare<T> {
 	}
 	
 	private void remove(Nodo<T> el) {
+		// Rimuove il nodo modificando i puntatori
 		el.getPrev().setNext(el.getNext());
 		el.getNext().setPrev(el.getPrev());
 		size--;
 	}
 	
 	public List<Nodo<T>> remove(int chiave) {
+		// Rimuove dalla lista i nodi in base alla chiave che siano alla stessa distanza da HEAD
 		List<Nodo<T>> out = new ArrayList<>();
 		
 		if(head.getChiave() == chiave) { 
 			out.add(head);
 			
-			remove(head);
-			head = head.getNext();
+			if(this.size == 1) {
+				// Se c'è solo l'HEAD nella lista allora basta renderla null e azzerare size 
+				head = null;
+				size = 0;
+			}else {
+				// Se ci fosse almeno un elemento basta usare la procedura remove
+				remove(head);
+				head = head.getNext();
+			}
 			
 			return out;
 		}
 		
-		for(Nodo<T> nodo: searchPrivate(chiave)) {
+		// searchPrivate restituisce i nodi alla stessa distanza da Head con chiave uguale a quella cercata
+		for(Nodo<T> nodo: searchPrivate(chiave)) { 
 			out.add(nodo);
 			remove(nodo);
 		}
@@ -80,7 +94,7 @@ public class ListaCircolare<T> {
 	}
 	
 	private List<Nodo<T>> searchPrivate(T info, int chiave) { 
-		// restituisce una lista contenente i nodi che hanno sia chiave che info uguale a qualli cercati
+		// Restituisce una lista contenente i nodi che hanno sia chiave che info uguale a qualli cercati
 		// con la condizione che siano alla stessa distanza da head
 		
 		List<Nodo<T>> ret = new ArrayList<>();
@@ -93,20 +107,30 @@ public class ListaCircolare<T> {
 			return ret;
 		}
 		
+		// Utilizzo questi due oggetti per riferirmi all'elemento successivo e a quello precedente rispetto a HEAD
+		// Poi scorro i due oggetti nelle due direzioni e termino il ciclo se:
+		// ritorno alla HEAD, 
+		// se ho trovato l'elemento cercato,
+		// se il riferimento al successivo ha superato il riferimento al precedente
 		Nodo<T> el_fw = head.getNext();
 		Nodo<T> el_bw = head.getPrev();
 		boolean trovato = false;
 		while(el_fw.getPrev() != el_bw && !trovato && el_fw != head) {
+			
 			if(el_fw.getChiave() == chiave && el_fw.getInfo().equals(info)) {
+				// Controllo prima se l'elemento cercato corrisponde al riferimento al Successivo
 				ret.add(el_fw);
 				trovato = true;	
 			}
 			
 			if(el_fw != el_bw && el_bw.getChiave() == chiave && el_bw.getInfo().equals(info)) {
+				// Controllo anche l'elemento Precedente con la condizione che non sia lo stesso elemento di quello Successivo
+				// altrimenti si duplicherebbero i riferimenti quando in realtà esiste un solo oggetto nella lista
 				ret.add(el_bw);
 				trovato = true;
 			}
 			
+			// Scorro ai nodi successivi
 			el_fw = el_fw.getNext();
 			el_bw = el_bw.getPrev();
 		}
@@ -117,6 +141,7 @@ public class ListaCircolare<T> {
 	private List<Nodo<T>> searchPrivate(int chiave) {
 		// restituisce una lista contenente i nodi che hanno la chiave uguale a qualla cercata
 		// con la condizione che siano alla stessa distanza da head
+		// NB: funziona allo stesso modo tranne per il fatto che controlla solo la chiave e non anche l'informazione
 		
 		List<Nodo<T>> ret = new ArrayList<>();
 		
@@ -150,13 +175,15 @@ public class ListaCircolare<T> {
 	}
 	
 	public String search(int chiave) {
+		// Ricerco in base alla chiave
+		
 		List<Nodo<T>> nodi = searchPrivate(chiave);
 		
 		if(nodi.size()==0)
 			return "Nessun nodo con la chiave ["+chiave+"]";
 		
+		// Creo la stringa da restituire in output
 		String ret = nodi.remove(0).toString();
-		
 		for(Nodo<T> nodo: nodi) {
 			ret += ", "+nodo.toString(); 
 		}
@@ -165,6 +192,8 @@ public class ListaCircolare<T> {
 	}
 	
 	public Nodo<T> get(int indice){ // 1 <= indice <= size
+		// Cerco il nodo che si trova all'indice indicato
+		
 		if(indice <= 0)
 			return null;
 		
@@ -203,6 +232,8 @@ public class ListaCircolare<T> {
 	}
 	
 	private Nodo<T>[] getArray(){
+		// Converto la lista in un array per eseguire l'ordinamento 
+		
 		Nodo<T>[] ret = new Nodo[size];
 		int i=0;
 		ret[i++] = head;
@@ -217,6 +248,8 @@ public class ListaCircolare<T> {
 	}
 	
 	public String getStringSPrime() {
+		// Ordino gli elementi e successivamente creo la stringa di output 
+		
 		if(head == null)
 			return "Empty";
 		
